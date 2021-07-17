@@ -8,6 +8,7 @@ import Page from '../common/Page'
 const Container = styled(Page)(() => ({
   height: 320,
   width: 320,
+  pointerEvents: 'none',
 }))
 
 const Inner = styled.div(() => ({
@@ -15,6 +16,7 @@ const Inner = styled.div(() => ({
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'column',
+  pointerEvents: 'none',
 }))
 
 export default function DragAndDrop({ setData }) {

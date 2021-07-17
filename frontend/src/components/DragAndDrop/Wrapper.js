@@ -23,6 +23,7 @@ const Hint = styled.div(() => ({
   color: 'grey',
   fontSize: 36,
   fontFamily: 'sans-serif',
+  pointerEvents: 'none',
 }))
 
 export default function DragAndDropWrapper({

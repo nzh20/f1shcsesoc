@@ -6,8 +6,8 @@ import Papa from 'papaparse'
 import Page from '../common/Page'
 
 const Container = styled(Page)(() => ({
-  height: 800,
-  width: 640,
+  height: 320,
+  width: 320,
 }))
 
 const Inner = styled.div(() => ({

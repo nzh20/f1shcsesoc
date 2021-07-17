@@ -10,7 +10,8 @@ const Hotspot = styled.div(() => ({
   bottom: 0,
   left: 0,
   right: 0,
-  zIndex: 999,
+  zIndex: 9999,
+  pointerEvents: 'none',
 }))
 
 const Hint = styled.div(() => ({
@@ -22,7 +23,6 @@ const Hint = styled.div(() => ({
   color: 'grey',
   fontSize: 36,
   fontFamily: 'sans-serif',
-  zIndex: 9998,
 }))
 
 export default function DragAndDropWrapper({
@@ -36,19 +36,23 @@ export default function DragAndDropWrapper({
     e.preventDefault()
     e.stopPropagation()
     setDrag(true)
+    console.log('1')
   }
   const handleDragOut = (e) => {
     e.preventDefault()
     e.stopPropagation()
     setDrag(false)
+    console.log('2')
   }
   const handleDrag = (e) => {
     e.preventDefault()
     e.stopPropagation()
+    console.log('3')
   }
   const handleDrop = (e) => {
     e.preventDefault()
     e.stopPropagation()
+    console.log('4')
     setDrag(false)
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       dropHandler(e.dataTransfer.files)
@@ -75,7 +79,10 @@ export default function DragAndDropWrapper({
 
   return (
     <div
-      style={{ display: 'inline-block', position: 'relative' }}
+      style={{
+        display: 'inline-block',
+        position: 'relative',
+      }}
       ref={dropRef}
     >
       {drag && (

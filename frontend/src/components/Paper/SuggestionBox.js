@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import mockSuggestions from './suggestions.json'
 export default function SuggestionBox({ answer }) {
   const [suggestions, setSuggestions] = useState([])
-  const [similarQuestoins, setSimilarQuestions] = useState([])
-  const analyseQuestion = () => {
-    // do logic stuff
-    setSuggestions(['fasdfasdfasdf'])
-    setSimilarQuestions(['fasdfsadf sd asdfasdf'])
-  }
+  const [similarQuestions, setSimilarQuestions] = useState([])
+
+  useEffect(() => {
+    const analyseQuestion = () => {
+      // do logic stuff
+      setSuggestions(['fasdfasdfasdf'])
+      setSimilarQuestions(['fasdfsadf sd asdfasdf'])
+    }
+    analyseQuestion()
+  }, [])
 
   const SuggestionContainer = styled.div(() => ({
     display: 'flex',
@@ -34,15 +38,18 @@ export default function SuggestionBox({ answer }) {
   const Suggestions = () => (
     <HalfBox>
       <Heading>Suggestions</Heading>
-      <Item>Textbook Chapter 15 - The Ozone Layer</Item>
+      {suggestions.map((suggestion) => (
+        <Item>{suggestion}</Item>
+      ))}
     </HalfBox>
   )
 
   const SimilarQuestions = () => (
     <HalfBox>
       <Heading>Similar Questions</Heading>
-      <Item>2014 HSC Paper A - Part B, Question 12</Item>
-      <Item>2013 HSC Paper B - Part A, Question 16</Item>
+      {similarQuestions.map((similarQuestion) => (
+        <Item>{similarQuestion}</Item>
+      ))}
     </HalfBox>
   )
 

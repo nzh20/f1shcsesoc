@@ -3,7 +3,7 @@ import Page from '../common/Page'
 import styled from 'styled-components'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import SuggestionBox from './SuggestionBox'
+import Teacher from './Teacher'
 const theme = createTheme({
   palette: {
     primary: {
@@ -44,62 +44,42 @@ export default function Paper({ data }) {
     margin: 12,
   }))
 
-  const Navigation = () => {
-    const NavButton = styled.button(() => ({
-      padding: 12,
-      border: 0,
-      borderRadius: 12,
-      background: 'black',
-      color: 'white',
-      cursor: 'pointer',
-    }))
-
-    const handleNext = () => {
-      if (qIndex < dictionary.length) {
-        setQIndex(qIndex + 1)
-      }
+  const handleNext = () => {
+    if (qIndex < dictionary.length) {
+      setQIndex(qIndex + 1)
     }
-
-    const handlePrev = () => {
-      if (qIndex > 0) {
-        setQIndex(qIndex - 1)
-      }
-    }
-
-    const NavContainer = styled.div(() => ({
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'space-between',
-    }))
-
-    return (
-      <NavContainer>
-        {qIndex > 0 && <NavButton onClick={handlePrev}>Previous</NavButton>}
-        {qIndex < dictionary.length - 1 && (
-          <NavButton onClick={handleNext}>Next</NavButton>
-        )}
-      </NavContainer>
-    )
   }
 
+  const handlePrev = () => {
+    if (qIndex > 0) {
+      setQIndex(qIndex - 1)
+    }
+  }
   const renderQuestion = (idx, { question, answer }) => (
-    <Response>
-      <div style={{ width: '100%' }}>
-        <ThemeProvider theme={theme}>
-          <LinearProgress
-            variant='determinate'
-            value={((idx + 1) / (dictionary.length + 1)) * 100}
-          />
-        </ThemeProvider>
-      </div>
+    <div>
+      <Response>
+        <div style={{ width: '100%' }}>
+          <ThemeProvider theme={theme}>
+            <LinearProgress
+              variant='determinate'
+              value={((idx + 1) / (dictionary.length + 1)) * 100}
+            />
+          </ThemeProvider>
+        </div>
 
-      <Question>
-        Q{idx + 1}. {question}
-      </Question>
-      <AnswerBox>{answer}</AnswerBox>
-      <SuggestionBox answer={answer} />
-      <Navigation />
-    </Response>
+        <Question>
+          Q{idx + 1}. {question}
+        </Question>
+        <AnswerBox>{answer}</AnswerBox>
+      </Response>
+      <Teacher
+        qIndex={qIndex}
+        answer={answer}
+        handleNext={handleNext}
+        handlePrev={handlePrev}
+        dictionary={dictionary}
+      />
+    </div>
   )
   return <div>{renderQuestion(qIndex, dictionary[qIndex])}</div>
 }

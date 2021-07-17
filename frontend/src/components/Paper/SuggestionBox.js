@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined'
+import CategoryIcon from '@material-ui/icons/Category'
 import mockSuggestions from './suggestions.json'
 export default function SuggestionBox({ answer }) {
   const [suggestions, setSuggestions] = useState([])
@@ -29,15 +31,25 @@ export default function SuggestionBox({ answer }) {
     textTransform: 'uppercase',
     fontSize: 12,
     fontWeight: 700,
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 8,
   }))
 
   const Item = styled.div(() => ({
-    fontSize: 10,
+    fontSize: 12,
+  }))
+
+  const Title = styled.div(() => ({
+    marginLeft: 4,
   }))
 
   const Suggestions = () => (
     <HalfBox>
-      <Heading>Suggestions</Heading>
+      <Heading>
+        <EmojiObjectsOutlinedIcon />
+        <Title>Suggestions</Title>
+      </Heading>
       {suggestions.map((suggestion) => (
         <Item>{suggestion}</Item>
       ))}
@@ -46,7 +58,10 @@ export default function SuggestionBox({ answer }) {
 
   const SimilarQuestions = () => (
     <HalfBox>
-      <Heading>Similar Questions</Heading>
+      <Heading>
+        <CategoryIcon />
+        <Title>Similar Questions</Title>
+      </Heading>
       {similarQuestions.map((similarQuestion) => (
         <Item>{similarQuestion}</Item>
       ))}

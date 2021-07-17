@@ -1,8 +1,14 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import mockSuggestions from './suggestions.json'
-
 export default function SuggestionBox({ answer }) {
-  const analyseQuestion = () => {}
+  const [suggestions, setSuggestions] = useState([])
+  const [similarQuestoins, setSimilarQuestions] = useState([])
+  const analyseQuestion = () => {
+    // do logic stuff
+    setSuggestions(['fasdfasdfasdf'])
+    setSimilarQuestions(['fasdfsadf sd asdfasdf'])
+  }
 
   const SuggestionContainer = styled.div(() => ({
     display: 'flex',

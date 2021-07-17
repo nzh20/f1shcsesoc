@@ -4,6 +4,7 @@ import SuggestionBox from './SuggestionBox'
 const Container = styled(Page)(() => ({
   width: 640,
   margin: 12,
+  flexDirection: 'column',
 }))
 
 export default function Teacher({

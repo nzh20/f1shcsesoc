@@ -53,7 +53,7 @@ const SyncedTo = styled.div(() => ({
 
 function startMarking(spreadsheetLink) {
   window.open(spreadsheetLink, "_blank")
-  window.location.href="/dnd"
+  window.location.href="/mark"
 }
 
 export default function ClassScreen() {

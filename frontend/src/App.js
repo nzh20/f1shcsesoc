@@ -2,24 +2,19 @@ import { useState } from 'react'
 import DragAndDrop from './components/DragAndDrop'
 
 function App() {
-  const [files, setFiles] = useState(['lachlan.png'])
+  const [data, setData] = useState()
   const handleDrop = (f) => {
-    let fileList = files
-    console.log('files', files)
-    f.forEach((file) => {
-      if (!file?.name) return
-      fileList.push(file?.name)
-    })
-    setFiles(fileList)
+    const reader = new FileReader()
+    reader.onload = async (e) => {
+      setData(e.target.result)
+    }
+    reader.readAsText(f[0])
   }
+
   return (
     <div>
       <DragAndDrop handleDrop={handleDrop}>
-        <div style={{ height: 300, width: 250 }}>
-          {files.map((file, i) => (
-            <div key={i}>{file}</div>
-          ))}
-        </div>
+        <div style={{ height: 600, width: 600 }}>{data || 'DROP HERE'}</div>
       </DragAndDrop>
     </div>
   )

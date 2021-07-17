@@ -1,6 +1,32 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import styled from 'styled-components'
 
-export default function DragAndDrop({ children, handleDrop: dropHandler }) {
+const Hotspot = styled.div(() => ({
+  border: 'dashed grey 4px',
+  backgroundColor: 'rgba(255,255,255,.8)',
+  position: 'absolute',
+  borderRadius: 16,
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  zIndex: 9999,
+}))
+
+const Hint = styled.div(() => ({
+  position: 'absolute',
+  top: '50%',
+  right: 0,
+  left: 0,
+  textAlign: 'center',
+  color: 'grey',
+  fontSize: 36,
+}))
+
+export default function DragAndDropWrapper({
+  children,
+  handleDrop: dropHandler,
+}) {
   const [drag, setDrag] = useState(false)
   const dropRef = useRef()
 
@@ -36,7 +62,7 @@ export default function DragAndDrop({ children, handleDrop: dropHandler }) {
     div.addEventListener('drop', handleDrop)
 
     return () => {
-      let div = this.dropRef.current
+      let div = dropRef.current
       div.removeEventListener('dragenter', handleDragIn)
       div.removeEventListener('dragleave', handleDragOut)
       div.removeEventListener('dragover', handleDrag)
@@ -50,32 +76,9 @@ export default function DragAndDrop({ children, handleDrop: dropHandler }) {
       ref={dropRef}
     >
       {drag && (
-        <div
-          style={{
-            border: 'dashed grey 4px',
-            backgroundColor: 'rgba(255,255,255,.8)',
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            zIndex: 9999,
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              top: '50%',
-              right: 0,
-              left: 0,
-              textAlign: 'center',
-              color: 'grey',
-              fontSize: 36,
-            }}
-          >
-            <div>drop here :)</div>
-          </div>
-        </div>
+        <Hotspot>
+          <Hint>drop here :)</Hint>
+        </Hotspot>
       )}
       {children}
     </div>

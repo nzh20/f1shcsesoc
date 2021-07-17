@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { DragAndDrop } from '../components/DragAndDrop'
+import DragAndDrop from '.'
 
 export default {
   title: 'Example/DragAndDrop',

@@ -1,6 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import styled from 'styled-components'
-import { CompleteScreen, DNDScreen, SuggestionsScreen } from './screens'
+import { LandingScreen, ClassScreen, CompleteScreen, DNDScreen, SuggestionsScreen } from './screens'
 
 const Container = styled.div(() => ({
   display: 'flex',
@@ -17,14 +23,28 @@ const Container = styled.div(() => ({
 function App() {
   const [data, setData] = useState()
   const [currentScreen, setCurrentScreen] = useState(0)
+
   return (
-    <Container>
-      {!data ? (
-        <DNDScreen setData={setData} />
-      ) : (
-        <SuggestionsScreen data={data} />
-      )}
-    </Container>
+    <Router>
+      <Container>
+        <Switch>
+          <Route
+            exact path='/'>
+            <LandingScreen/>
+          </Route>
+          <Route path='/classes/:id'>
+            <ClassScreen/>
+          </Route>
+          <Route path='/mark'>
+            {/* <MarkScreen/> */}
+          </Route>
+        </Switch>
+      </Container>
+    </Router>
+    
+     
+     
+    
   )
 }
 

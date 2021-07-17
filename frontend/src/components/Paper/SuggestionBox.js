@@ -10,11 +10,21 @@ export default function SuggestionBox({ answer }) {
   useEffect(() => {
     const analyseQuestion = () => {
       // do logic stuff
-      setSuggestions(['fasdfasdfasdf'])
-      setSimilarQuestions(['fasdfsadf sd asdfasdf'])
+      console.log(mockSuggestions)
+      const questionWords = answer.split(" ")
+      for (const word of questionWords) {
+        for (const mockSuggestion of mockSuggestions) {
+          console.log(mockSuggestion)
+          if (mockSuggestion.keywords.includes(word)) {
+            setSuggestions(mockSuggestion.suggestions)
+            setSimilarQuestions(mockSuggestion.similarQuestions)
+          }
+        }
+        
+      }
     }
     analyseQuestion()
-  }, [])
+  }, [answer])
 
   const SuggestionContainer = styled.div(() => ({
     display: 'flex',

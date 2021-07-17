@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded'
 const Hotspot = styled.div(() => ({
-  border: 'dashed grey 4px',
+  border: 'dashed black 4px',
   backgroundColor: 'rgba(255,255,255,.8)',
   position: 'absolute',
   borderRadius: 16,
@@ -15,15 +15,19 @@ const Hotspot = styled.div(() => ({
 }))
 
 const Hint = styled.div(() => ({
-  position: 'absolute',
-  top: '50%',
-  right: 0,
-  left: 0,
-  textAlign: 'center',
-  color: 'grey',
-  fontSize: 36,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: 'black',
+  fontSize: 16,
+  background: 'white',
   fontFamily: 'sans-serif',
   pointerEvents: 'none',
+  textTransform: 'uppercase',
+  height: '100%',
+  width: '100%',
+  flexDirection: 'column',
+  borderRadius: 16,
 }))
 
 export default function DragAndDropWrapper({
@@ -88,7 +92,10 @@ export default function DragAndDropWrapper({
     >
       {drag && (
         <Hotspot>
-          <Hint>drop here :)</Hint>
+          <Hint>
+            <div>Drop Here</div>
+            <AddBoxRoundedIcon style={{ marginTop: 12 }} />
+          </Hint>
         </Hotspot>
       )}
       {children}

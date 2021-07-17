@@ -1,15 +1,8 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import Page from '../common/Page'
 import SuggestionBox from './SuggestionBox'
 import TextField from '@material-ui/core/TextField'
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#000',
-    },
-  },
-})
 
 const Container = styled(Page)(() => ({
   width: 640,
@@ -21,9 +14,20 @@ export default function Teacher({
   qIndex,
   handleNext,
   handlePrev,
+  handleFinish,
+  report,
+  setReport,
   dictionary,
   answer,
 }) {
+  const [feedback, setFeedback] = useState('')
+  const finishReport = () => {
+    setReport({
+      ...report,
+      feedback,
+    })
+    handleFinish()
+  }
   const Navigation = () => {
     const NavButton = styled.button(() => ({
       padding: 12,
@@ -51,22 +55,29 @@ export default function Teacher({
           <NavButton onClick={handleNext}>Next</NavButton>
         )}
         {qIndex === dictionary.length - 1 && (
-          <NavButton onClick={() => {}}>Finish</NavButton>
+          <NavButton onClick={finishReport}>Finish</NavButton>
         )}
       </NavContainer>
     )
   }
+
+  const handleFeedback = (e) => {
+    setFeedback(e.target.value)
+  }
+
+  const Label = styled.span(() => ({
+    fontSize: 12,
+  }))
   return (
     <Container>
-      <SuggestionBox answer={answer} />
-      <ThemeProvider theme={theme}>
-        <TextField
-          style={{ width: '100%', margin: 12 }}
-          label='Your Feedback'
-          multiline
-          variant='outlined'
-        />
-      </ThemeProvider>
+      <SuggestionBox answer={answer} report={report} setReport={setReport} />
+      <TextField
+        onChange={handleFeedback}
+        style={{ width: '100%', margin: 12 }}
+        label={<Label>Your Feedback</Label>}
+        multiline
+        variant='outlined'
+      />
       <Navigation />
     </Container>
   )

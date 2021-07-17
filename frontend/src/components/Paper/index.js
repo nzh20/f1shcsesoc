@@ -1,18 +1,10 @@
 import { useState } from 'react'
 import Page from '../common/Page'
 import styled from 'styled-components'
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import Teacher from './Teacher'
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#000',
-    },
-  },
-})
 
-export default function Paper({ data }) {
+export default function Paper({ data, report, setReport, onFinish }) {
   const student1 = data[0]
   const entries1 = Object.entries(student1)
   const [timestamp, score, ...qna] = entries1
@@ -59,12 +51,10 @@ export default function Paper({ data }) {
     <div>
       <Response>
         <div style={{ width: '100%' }}>
-          <ThemeProvider theme={theme}>
-            <LinearProgress
-              variant='determinate'
-              value={((idx + 1) / (dictionary.length + 1)) * 100}
-            />
-          </ThemeProvider>
+          <LinearProgress
+            variant='determinate'
+            value={((idx + 1) / (dictionary.length + 1)) * 100}
+          />
         </div>
 
         <Question>
@@ -75,8 +65,11 @@ export default function Paper({ data }) {
       <Teacher
         qIndex={qIndex}
         answer={answer}
+        report={report}
+        setReport={setReport}
         handleNext={handleNext}
         handlePrev={handlePrev}
+        handleFinish={onFinish}
         dictionary={dictionary}
       />
     </div>

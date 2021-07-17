@@ -19,12 +19,13 @@ const Inner = styled.div(() => ({
   pointerEvents: 'none',
 }))
 
-export default function DragAndDrop({ setData }) {
+export default function DragAndDrop({ setData, onFinish }) {
   const handleDrop = (f) => {
     const reader = new FileReader()
     reader.onload = async (e) => {
       const csv = Papa.parse(e.target.result, { header: true })
       setData(csv?.data)
+      onFinish()
     }
     reader.readAsText(f[0])
   }

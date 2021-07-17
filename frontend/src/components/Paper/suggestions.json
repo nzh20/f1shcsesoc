@@ -1,0 +1,19 @@
+[
+  {
+    "keywords": ["acid rain", "exothermic", "corrosion"],
+    "suggestions": [
+      "Do quiz 4 [Term 2, Week 4] for an overview on exothermic reactions"
+    ],
+    "similarQuestions": [
+      "State the chemical equation for the reaction of Calcium carbonate with Sulphuric acid - 2 marks (HSC 2013, Q2b.)",
+      "Analyse the reasons why acid rain may be formed in Australia - 3 marks (HSC 2019, Q5a.)"
+    ]
+  },
+  {
+    "keywords": ["photosynthesis", "energy", "sunlight"],
+    "suggestions": ["Watch Photosynthesis - Plants and Energy"],
+    "similarQuestions": [
+      "Compare the processes of respiration and photosynthesis in plants, providing an example. - 5 marks (HSC 2014, Q11a.)"
+    ]
+  }
+]

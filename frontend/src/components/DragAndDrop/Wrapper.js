@@ -10,7 +10,7 @@ const Hotspot = styled.div(() => ({
   bottom: 0,
   left: 0,
   right: 0,
-  zIndex: 9999,
+  zIndex: 999,
 }))
 
 const Hint = styled.div(() => ({
@@ -21,6 +21,8 @@ const Hint = styled.div(() => ({
   textAlign: 'center',
   color: 'grey',
   fontSize: 36,
+  fontFamily: 'sans-serif',
+  zIndex: 9998,
 }))
 
 export default function DragAndDropWrapper({
@@ -63,6 +65,7 @@ export default function DragAndDropWrapper({
 
     return () => {
       let div = dropRef.current
+      if (!div) return
       div.removeEventListener('dragenter', handleDragIn)
       div.removeEventListener('dragleave', handleDragOut)
       div.removeEventListener('dragover', handleDrag)

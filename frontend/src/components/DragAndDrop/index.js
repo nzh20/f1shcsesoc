@@ -1,35 +1,40 @@
 import { useState } from 'react'
 import Wrapper from './Wrapper'
 import styled from 'styled-components'
+import AttachFileRoundedIcon from '@material-ui/icons/AttachFileRounded'
+import Papa from 'papaparse'
+import Page from '../common/Page'
 
-const Container = styled.div(() => ({
+const Container = styled(Page)(() => ({
   height: 800,
   width: 640,
-  fontFamily: 'sans-serif',
-  boxShadow: `
-    0 1px 2px rgba(0,0,0,0.02), 
-    0 2px 4px rgba(0,0,0,0.02), 
-    0 4px 8px rgba(0,0,0,0.02), 
-    0 8px 16px rgba(0,0,0,0.02),
-    0 16px 32px rgba(0,0,0,0.02), 
-    0 32px 64px rgba(0,0,0,0.02)`,
-  padding: 32,
-  borderRadius: 16,
 }))
 
-export default function DragAndDrop() {
-  const [data, setData] = useState()
+const Inner = styled.div(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column',
+}))
+
+export default function DragAndDrop({ setData }) {
   const handleDrop = (f) => {
     const reader = new FileReader()
     reader.onload = async (e) => {
-      setData(e.target.result)
+      const csv = Papa.parse(e.target.result, { header: true })
+      setData(csv?.data)
     }
     reader.readAsText(f[0])
   }
 
   return (
     <Wrapper handleDrop={handleDrop}>
-      <Container>{data || 'DROP HERE'}</Container>
+      <Container>
+        <Inner>
+          <div>DRAG CSV FILE HERE</div>
+          <AttachFileRoundedIcon style={{ marginTop: 12 }} />
+        </Inner>
+      </Container>
     </Wrapper>
   )
 }

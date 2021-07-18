@@ -4,9 +4,17 @@ import {
   Switch,
   Route,
   Redirect,
-} from 'react-router-dom';
+} from 'react-router-dom'
 import styled from 'styled-components'
-import { LandingScreen, ClassScreen, MarkScreen, CompleteScreen, DNDScreen, SuggestionsScreen, Report } from './screens'
+import {
+  LandingScreen,
+  ClassScreen,
+  MarkScreen,
+  CompleteScreen,
+  DNDScreen,
+  SuggestionsScreen,
+  Report,
+} from './screens'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import Logo from './components/common/Logo'
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded'
@@ -51,44 +59,38 @@ const Header = styled.div(() => ({
     0 32px 64px rgba(0,0,0,0.02)`,
 }))
 
-const HeaderInner = styled.div(() => ({
+const SplitScreen = styled.div(() => ({
   display: 'flex',
-  alignItems: 'center',
-  marginLeft: 24,
-  justifyContent: 'space-evenly',
-  flexGrow: 1,
+  alignItems: 'flex-start',
 }))
 
 function App() {
-  const [data, setData] = useState()
-  const [report, setReport] = useState({
-    feedback: '',
-    suggestions: [],
-    similarQuestions: [],
-  })
-  const [currentScreen, setCurrentScreen] = useState(0)
+  const [showClassroom, setShowClassroom] = useState(true)
 
   return (
     <Router>
       <Container>
         <Switch>
-          <Route
-            exact path='/'>
-            <LandingScreen/>
+          <Route exact path='/'>
+            <SplitScreen>
+              {showClassroom && (
+                <div style={{ marginRight: 24 }}>
+                  <LandingScreen />
+                </div>
+              )}
+              <MarkScreen setShowClassroom={setShowClassroom} />
+            </SplitScreen>
           </Route>
           <Route path='/classes/:id'>
-            <ClassScreen/>
+            <ClassScreen />
           </Route>
           <Route path='/mark'>
-            <MarkScreen/>
+            <MarkScreen />
           </Route>
         </Switch>
       </Container>
     </Router>
-    
   )
-     
-  
 }
 
 export default App

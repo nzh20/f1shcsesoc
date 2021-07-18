@@ -1,12 +1,19 @@
-  import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-} from 'react-router-dom';
+} from 'react-router-dom'
 import styled from 'styled-components'
-import { LandingScreen, ClassScreen, CompleteScreen, DNDScreen, SuggestionsScreen, ReportScreen } from '.'
+import {
+  LandingScreen,
+  ClassScreen,
+  CompleteScreen,
+  DNDScreen,
+  SuggestionsScreen,
+  ReportScreen,
+} from '.'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { ReactComponent as Logo } from '../assets/just-bird.svg'
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded'
@@ -23,15 +30,8 @@ const theme = createTheme({
 })
 const Container = styled.div(() => ({
   display: 'flex',
-  width: '100%',
-  height: '100%',
-  justifyContent: 'center',
   alignItems: 'center',
-  position: 'absolute',
   flexDirection: 'column',
-  background:
-    "url('https://images.unsplash.com/photo-1525498128493-380d1990a112?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80')",
-  backgroundSize: 'cover',
 }))
 
 const Header = styled.div(() => ({
@@ -55,11 +55,11 @@ const HeaderInner = styled.div(() => ({
   display: 'flex',
   alignItems: 'center',
   marginLeft: 24,
-  justifyContent: 'space-evenly',
+  justifyContent: 'flex-end',
   flexGrow: 1,
 }))
 
-function MarkScreen() {
+function MarkScreen({ setShowClassroom }) {
   const [currentScreen, setCurrentScreen] = useState(0)
   const [data, setData] = useState()
   const [report, setReport] = useState({
@@ -67,11 +67,14 @@ function MarkScreen() {
     suggestions: [],
     similarQuestions: [],
   })
+
   const goNext = () => {
     if (currentScreen < screens.length - 1) setCurrentScreen(currentScreen + 1)
+    setShowClassroom(false)
   }
 
   const goBack = () => {
+    if (currentScreen === 1) setShowClassroom(true)
     if (currentScreen > 0) setCurrentScreen(currentScreen - 1)
   }
   const screens = [
@@ -87,21 +90,29 @@ function MarkScreen() {
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Header>
-          <Logo style={{ width: 64 }} />
-          <HeaderInner>
-            {currentScreen > 0 && <ArrowBackIosRoundedIcon onClick={goBack} />}
-            {currentScreen !== 0 && (
-              <HomeRoundedIcon onClick={() => setCurrentScreen(0)} />
-            )}
-          </HeaderInner>
-        </Header>
+        {currentScreen !== 0 && (
+          <Header>
+            <Logo style={{ width: 64 }} />
+            <HeaderInner>
+              {currentScreen > 0 && (
+                <ArrowBackIosRoundedIcon
+                  style={{ marginRight: 16, cursor: 'pointer' }}
+                  onClick={goBack}
+                />
+              )}
+              {currentScreen !== 0 && (
+                <HomeRoundedIcon
+                  style={{ marginRight: 24, cursor: 'pointer' }}
+                  onClick={() => setCurrentScreen(0)}
+                />
+              )}
+            </HeaderInner>
+          </Header>
+        )}
         {screens[currentScreen]}
       </Container>
     </ThemeProvider>
   )
-
-    
 }
 
 export default MarkScreen

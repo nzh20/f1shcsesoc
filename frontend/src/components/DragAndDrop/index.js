@@ -17,6 +17,7 @@ const Inner = styled.div(() => ({
   justifyContent: 'center',
   flexDirection: 'column',
   pointerEvents: 'none',
+  lineHeight: 2,
 }))
 
 export default function DragAndDrop({ setData, onFinish }) {
@@ -34,6 +35,7 @@ export default function DragAndDrop({ setData, onFinish }) {
     <Wrapper handleDrop={handleDrop}>
       <Container>
         <Inner>
+          <div>ALREADY HAVE A CSV FILE?</div>
           <div>DRAG CSV FILE HERE</div>
           <AttachFileRoundedIcon style={{ marginTop: 12 }} />
         </Inner>

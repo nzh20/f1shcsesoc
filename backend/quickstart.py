@@ -47,7 +47,7 @@ def main():
 
     response = requests.get(
         "https://docs.google.com/spreadsheets/d/1yFF_oEqFngncAxFFAbmcYr4a3VcgffdGVOmkB-fu6aY/gviz/tq?tqx= out:csv&sheet=a")
-    print(response.json())
+    print(response)
 
     # service = build('sheets', 'v4', http=creds.authorize(httplib2.Http()))
 

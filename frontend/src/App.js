@@ -22,7 +22,7 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded'
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#000',
+      main: '#5540ea',
     },
     secondary: {
       main: '#000',
@@ -81,20 +81,22 @@ function App() {
       <Container>
         <Switch>
           <Route exact path='/'>
-            <SplitScreen>
-              {showClassroom && (
-                <div style={{ marginRight: 24 }}>
-                  <LandingScreen />
-                </div>
-              )}
-              <MarkScreen setShowClassroom={setShowClassroom} />
-            </SplitScreen>
+            <ThemeProvider theme={theme}>
+              <SplitScreen>
+                {showClassroom && (
+                  <div style={{ marginRight: 24 }}>
+                    <LandingScreen />
+                  </div>
+                )}
+                <MarkScreen setShowClassroom={setShowClassroom} />
+              </SplitScreen>
+            </ThemeProvider>
           </Route>
           <Route path='/classes/:id'>
             <ClassScreen />
           </Route>
           <Route path='/mark'>
-            <MarkScreen />
+            <MarkScreen setShowClassroom={() => {}} forceNav={true} />
           </Route>
         </Switch>
       </Container>

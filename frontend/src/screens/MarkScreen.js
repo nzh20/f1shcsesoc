@@ -24,7 +24,7 @@ const theme = createTheme({
       main: '#5540ea',
     },
     secondary: {
-      main: '#5540ea',
+      main: '#000',
     },
   },
 })
@@ -36,7 +36,7 @@ const Container = styled.div(() => ({
 
 const Header = styled.div(() => ({
   position: 'relative',
-  width: 320,
+  width: 200,
   height: 64,
   background: 'white',
   borderRadius: 120,
@@ -59,7 +59,7 @@ const HeaderInner = styled.div(() => ({
   flexGrow: 1,
 }))
 
-function MarkScreen({ setShowClassroom }) {
+function MarkScreen({ setShowClassroom, forceNav }) {
   const [currentScreen, setCurrentScreen] = useState(0)
   const [data, setData] = useState()
   const [report, setReport] = useState({
@@ -90,7 +90,7 @@ function MarkScreen({ setShowClassroom }) {
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        {currentScreen !== 0 && (
+        {(currentScreen !== 0 || forceNav) && (
           <Header>
             <Logo style={{ width: 64 }} />
             <HeaderInner>
@@ -100,15 +100,13 @@ function MarkScreen({ setShowClassroom }) {
                   onClick={goBack}
                 />
               )}
-              {currentScreen !== 0 && (
-                <HomeRoundedIcon
-                  style={{ marginRight: 24, cursor: 'pointer' }}
-                  onClick={() => {
-                    setCurrentScreen(0)
-                    setShowClassroom(true)
-                  }}
-                />
-              )}
+
+              <HomeRoundedIcon
+                style={{ marginRight: 24, cursor: 'pointer' }}
+                onClick={() => {
+                  window.location.href = '/'
+                }}
+              />
             </HeaderInner>
           </Header>
         )}

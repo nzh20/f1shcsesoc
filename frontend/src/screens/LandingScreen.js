@@ -6,6 +6,8 @@ import Classroom from '../assets/classroom.png'
 import Tooltip from '@material-ui/core/Tooltip'
 import ArrowForwardIcon from '@material-ui/icons/Launch'
 import { Link } from 'react-router-dom'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 import React, { useEffect, useState } from 'react'
 const Container = styled.div(() => ({
   display: 'flex',
@@ -64,10 +66,14 @@ const SyncedTo = styled.div(() => ({
 
 export default function LandingScreen() {
   const [classes, setClasses] = useState([])
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     fetch('http://localhost:5000/classes')
       .then((response) => response.json())
-      .then((data) => setClasses(data))
+      .then((data) => {
+        setClasses(data)
+        setLoading(false)
+      })
   }, [])
   return (
     <Page>
@@ -105,29 +111,30 @@ export default function LandingScreen() {
         <div>
           <h2>Your Classes</h2>
         </div>
+        {loading && <CircularProgress />}
         {classes &&
           classes.map((c) => {
             return (
-              <SyncedTo>
-                <LinkWrapper>
-                  <Link
-                    style={{ textDecoration: 'none', color: '#5540ea' }}
-                    to={`/classes/${c.id}`}
-                  >
+              <Link
+                style={{ textDecoration: 'none', color: '#5540ea' }}
+                to={`/classes/${c.id}`}
+              >
+                <SyncedTo>
+                  <LinkWrapper>
                     <h3>{c.name}</h3>
-                  </Link>
-                </LinkWrapper>
-                <Tooltip
-                  title='Access on site'
-                  aria-label='Link to access class on site'
-                >
-                  <IconWrapper
-                    onClick={() => window.open(c.alternateLink, '_blank')}
+                  </LinkWrapper>
+                  <Tooltip
+                    title='Access on site'
+                    aria-label='Link to access class on site'
                   >
-                    <ArrowForwardIcon />
-                  </IconWrapper>
-                </Tooltip>
-              </SyncedTo>
+                    <IconWrapper
+                      onClick={() => window.open(c.alternateLink, '_blank')}
+                    >
+                      <ArrowForwardIcon />
+                    </IconWrapper>
+                  </Tooltip>
+                </SyncedTo>
+              </Link>
             )
           })}
       </Container>

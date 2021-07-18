@@ -15,5 +15,19 @@
     "similarQuestions": [
       "Compare the processes of respiration and photosynthesis in plants, providing an example. - 5 marks (HSC 2014, Q11a.)"
     ]
+  },
+  {
+    "keywords": ["radioisotopes", "radioisotope", "medicine"],
+    "suggestions": ["Read Chapter 4, part III of Tackling Chemistry 2021"],
+    "similarQuestions": [
+      "Analyse the ways the decay of radioisotopes can be exploited to treat disease. - 3 marks (HSC 2015, Q8a.)", "The half-life of Technicium-99 relatively short. How does this benefit the process of diagnosing disease? - 3 marks (HSC 2015, Q8b.)"
+    ]
+  },
+  {
+    "keywords": ["equilibrium", "pressure", "vessel"],
+    "suggestions": ["Do quiz 3 [Term 2, Week 3] for an overview on the effects of pressure on equilibrium"],
+    "similarQuestions": [
+      "At room temperature, 0.40 moles of Sulfur dioxide and 0.80 moles of oxygen were introduced into a sealed 10L vessel and allowed to come to equilibrium. Describe the process of both chemicals reaching equilibrium in this vessel. - 3 marks (HSC 2009, Q9b.)"
+    ]
   }
 ]

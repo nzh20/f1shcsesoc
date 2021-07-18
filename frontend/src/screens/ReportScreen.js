@@ -5,6 +5,7 @@ import SendRoundedIcon from '@material-ui/icons/SendRounded'
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined'
 import CategoryIcon from '@material-ui/icons/Category'
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
+import { ReactComponent as Logo } from '../assets/logo.svg'
 import { ReactComponent as ReportBackground } from '../assets/report.svg'
 const Container = styled(Page)(() => ({
   width: 640,
@@ -51,7 +52,6 @@ export default function ReportScreen({ data, report, onFinish }) {
         </Subtitle>
         {feedback}
       </Box>
-
       {!!suggestions?.length && (
         <Box>
           <Subtitle>
@@ -63,7 +63,6 @@ export default function ReportScreen({ data, report, onFinish }) {
           ))}
         </Box>
       )}
-
       {!!similarQuestions?.length && (
         <Box>
           <Subtitle>
@@ -84,7 +83,18 @@ export default function ReportScreen({ data, report, onFinish }) {
           width: 400,
         }}
       />
-
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 24,
+          left: 40,
+          marginTop: 24,
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        Powered by <Logo style={{ marginLeft: 8, width: 80 }} />
+      </div>
       <div style={{ width: '100%', marginTop: 80, position: 'relative' }}>
         <Fab
           color='primary'

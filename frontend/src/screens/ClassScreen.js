@@ -77,7 +77,6 @@ export default function ClassScreen() {
     fetchClass()
   }, [])
 
-  console.log('aaa', coursework)
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Logo style={{ width: 128, marginBottom: 24 }} />

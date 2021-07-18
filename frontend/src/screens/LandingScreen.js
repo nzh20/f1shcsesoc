@@ -26,10 +26,9 @@ const IconWrapper = styled.div(() => ({
 
 const LinkWrapper = styled.div(() => ({
   transition: '200ms',
-  color: 'black',
+  color: '#5540ea',
   ':hover': {
     transition: '400ms',
-    color: '#5540ea',
     cursor: 'pointer',
   },
 }))
@@ -87,7 +86,7 @@ export default function LandingScreen() {
             <ExpandMoreIcon
               style={{
                 alignSelf: 'center',
-                fill: '#5540e',
+                fill: '5540ea',
                 marginRight: '1rem',
               }}
             />
@@ -112,7 +111,7 @@ export default function LandingScreen() {
               <SyncedTo onClick={() => window.open(c.alternateLink, '_blank')}>
                 <LinkWrapper>
                   <Link
-                    style={{ textDecoration: 'none' }}
+                    style={{ textDecoration: 'none', color: '#5540ea' }}
                     to={`/classes/${c.id}`}
                   >
                     <h3>{c.name}</h3>

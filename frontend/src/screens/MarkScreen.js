@@ -21,10 +21,10 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded'
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#000',
+      main: '#5540ea',
     },
     secondary: {
-      main: '#000',
+      main: '#5540ea',
     },
   },
 })

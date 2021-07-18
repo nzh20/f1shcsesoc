@@ -8,14 +8,14 @@ import {
 import Tooltip from '@material-ui/core/Tooltip'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import Logo from '../components/common/Logo'
+import { ReactComponent as Logo } from '../assets/logo.svg'
 import { useHistory, useParams, useLocation } from 'react-router-dom'
 import Page from '../components/common/Page'
 
 const Container = styled.div(() => ({
   display: 'flex',
   'flex-direction': 'column',
-  width: '80vw',
+  width: 800,
 }))
 
 const LinkWrapper = styled.div(() => ({
@@ -74,46 +74,49 @@ export default function ClassScreen() {
   }, [classData])
 
   return (
-    <Page>
-      <Container>
-        <Logo style={{ width: '60vw' }} />
-        {classData ? (
-          <>
-            <h1>{classData.name}</h1>
-            <LinkWrapper
-              onClick={() => window.open(classData.alternateLink, '_blank')}
-            >
-              {classData.alternateLink}
-            </LinkWrapper>
-          </>
-        ) : null}
-        {
-          coursework.courseWork
-            ? coursework.courseWork.map((cw) => {
-                return (
-                  <Tooltip title='Mark coursework'>
-                    <SyncedTo
-                      aria-label='Click to mark coursework'
-                      onClick={() =>
-                        startMarking(cw.materials[0].form.responseUrl)
-                      }
-                    >
-                      <h3>{cw.title}</h3>
-                      <Right>
-                        {`Due ${cw.dueTime.hours}:${cw.dueTime.minutes} ${cw.dueDate.year}/${cw.dueDate.month}/${cw.dueDate.day}`}
-                        <p>
-                          {`${Math.floor(
-                            Math.random() * 4
-                          )}/3 students have completed this.`}
-                        </p>
-                      </Right>
-                    </SyncedTo>
-                  </Tooltip>
-                )
-              })
-            : null // do loading
-        }
-      </Container>
-    </Page>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <Logo style={{ width: 128, marginBottom: 24 }} />
+
+      <Page>
+        <Container>
+          {classData ? (
+            <>
+              <h1>{classData.name}</h1>
+              <LinkWrapper
+                onClick={() => window.open(classData.alternateLink, '_blank')}
+              >
+                {classData.alternateLink}
+              </LinkWrapper>
+            </>
+          ) : null}
+          {
+            coursework.courseWork
+              ? coursework.courseWork.map((cw) => {
+                  return (
+                    <Tooltip title='Mark coursework'>
+                      <SyncedTo
+                        aria-label='Click to mark coursework'
+                        onClick={() =>
+                          startMarking(cw.materials[0].form.responseUrl)
+                        }
+                      >
+                        <h3>{cw.title}</h3>
+                        <Right>
+                          {`Due ${cw.dueTime.hours}:${cw.dueTime.minutes} ${cw.dueDate.year}/${cw.dueDate.month}/${cw.dueDate.day}`}
+                          <p>
+                            {`${Math.floor(
+                              Math.random() * 4
+                            )}/3 students have completed this.`}
+                          </p>
+                        </Right>
+                      </SyncedTo>
+                    </Tooltip>
+                  )
+                })
+              : null // do loading
+          }
+        </Container>
+      </Page>
+    </div>
   )
 }

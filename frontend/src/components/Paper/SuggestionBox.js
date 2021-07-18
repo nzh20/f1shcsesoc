@@ -17,7 +17,6 @@ export default function SuggestionBox({ answer, report, setReport }) {
       ...report,
       suggestions: newSuggestions,
     }
-    console.log('new', newReport)
     setReport(newReport)
   }
 

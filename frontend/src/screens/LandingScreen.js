@@ -1,7 +1,7 @@
 import Page from '../components/common/Page'
 import styled from 'styled-components'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Logo from '../components/common/Logo'
+import { ReactComponent as Logo } from '../assets/just-bird.svg'
 import Classroom from '../assets/classroom.png'
 import Tooltip from '@material-ui/core/Tooltip'
 import ArrowForwardIcon from '@material-ui/icons/Launch'
@@ -73,14 +73,16 @@ export default function LandingScreen() {
   return (
     <Page>
       <Container>
-        {/* <Logo style={{ width: '60vw' }} /> */}
-        <div>
-          <h2>
-            Welcome, <span style={{ color: '#5540ea' }}>An Thy</span>.
+        <div
+          style={{ display: 'flex', alignItems: 'center', marginBottom: 24 }}
+        >
+          <Logo style={{ width: 48 }} />
+          <h2 style={{ marginLeft: 16 }}>
+            Welcome, <span style={{ color: '#5540ea' }}>An Thy</span>
           </h2>
         </div>
         <SyncedTo>
-          <h3>Synced to:</h3>
+          <h3>Synced to</h3>
           <Right>
             <ExpandMoreIcon
               style={{

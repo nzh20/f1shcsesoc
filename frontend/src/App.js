@@ -16,7 +16,7 @@ import {
   Report,
 } from './screens'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
-import Logo from './components/common/Logo'
+import { ReactComponent as Logo } from './assets/just-bird.svg'
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded'
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded'
 const theme = createTheme({
@@ -44,7 +44,7 @@ const Container = styled.div(() => ({
 
 const Header = styled.div(() => ({
   position: 'relative',
-  width: 320,
+  width: 280,
   height: 64,
   background: 'white',
   borderRadius: 120,
@@ -57,6 +57,15 @@ const Header = styled.div(() => ({
     0 8px 16px rgba(0,0,0,0.02),
     0 16px 32px rgba(0,0,0,0.02), 
     0 32px 64px rgba(0,0,0,0.02)`,
+}))
+
+const HeaderInner = styled.div(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  marginLeft: 24,
+  justifyContent: 'flex-start',
+  flexGrow: 1,
+  fontFamily: 'sans-serif',
 }))
 
 const SplitScreen = styled.div(() => ({

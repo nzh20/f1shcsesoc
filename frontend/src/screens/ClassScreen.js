@@ -61,17 +61,22 @@ export default function ClassScreen() {
   const [coursework, setCoursework] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:5000/class?id=${id}`)
-      .then((response) => response.json())
-      .then((data) => setClassData(data))
+    const fetchClass = async () => {
+      try {
+        const res1 = await fetch(`http://localhost:5000/class?id=${id}`)
+        setClassData(await res1.json())
+        const res2 = await fetch(
+          `http://localhost:5000/coursework?class_id=${id}`
+        )
+        setCoursework(await res2.json())
+      } catch (e) {
+        console.log('err', e)
+      }
+    }
+    fetchClass()
   }, [])
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/coursework?class_id=${id}`)
-      .then((response) => response.json())
-      .then((data) => setCoursework(data))
-  }, [classData])
-
+  console.log('aaa', coursework)
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Logo style={{ width: 128, marginBottom: 24 }} />

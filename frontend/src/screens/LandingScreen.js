@@ -18,6 +18,7 @@ const Container = styled.div(() => ({
 const IconWrapper = styled.div(() => ({
   alignSelf: 'center',
   transition: '200ms',
+  marginTop: 4,
   ':hover': {
     opacity: '50%',
     cursor: 'pointer',
@@ -108,7 +109,7 @@ export default function LandingScreen() {
         {classes &&
           classes.map((c) => {
             return (
-              <SyncedTo onClick={() => window.open(c.alternateLink, '_blank')}>
+              <SyncedTo>
                 <LinkWrapper>
                   <Link
                     style={{ textDecoration: 'none', color: '#5540ea' }}
@@ -121,7 +122,9 @@ export default function LandingScreen() {
                   title='Access on site'
                   aria-label='Link to access class on site'
                 >
-                  <IconWrapper>
+                  <IconWrapper
+                    onClick={() => window.open(c.alternateLink, '_blank')}
+                  >
                     <ArrowForwardIcon />
                   </IconWrapper>
                 </Tooltip>

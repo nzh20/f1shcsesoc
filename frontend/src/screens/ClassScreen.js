@@ -36,19 +36,18 @@ const Right = styled.div(() => ({
 
 const SyncedTo = styled.div(() => ({
   display: 'flex',
-  'flex-direction': 'row',
-  width: '60vw',
-  padding: '1rem',
-  'border-radius': '25px',
-  'box-shadow': '0px 5px 9px 2px #B4B1EF',
-  'justify-content': 'space-between',
-  margin: '0.5rem',
-  ':hover': {
-    color: '#5540ea',
-    transition: '200ms',
-    opacity: '50%',
-    cursor: 'pointer',
+  flexDirection: 'row',
+  padding: 12,
+  marginBottom: 24,
+  borderRadius: 8,
+  border: '1px solid #eee',
+  transition: 'all 0.2s ease',
+  '&:hover': {
+    boxShadow: '0px 0px 40px 0px #B4B1EF',
+    border: '1px solid transparent',
   },
+  cursor: 'pointer',
+  justifyContent: 'space-between',
 }))
 
 function startMarking(spreadsheetLink) {

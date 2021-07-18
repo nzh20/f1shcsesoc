@@ -103,7 +103,10 @@ function MarkScreen({ setShowClassroom }) {
               {currentScreen !== 0 && (
                 <HomeRoundedIcon
                   style={{ marginRight: 24, cursor: 'pointer' }}
-                  onClick={() => setCurrentScreen(0)}
+                  onClick={() => {
+                    setCurrentScreen(0)
+                    setShowClassroom(true)
+                  }}
                 />
               )}
             </HeaderInner>

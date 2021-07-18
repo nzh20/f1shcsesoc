@@ -18,6 +18,7 @@ const Container = styled.div(() => ({
 const IconWrapper = styled.div(() => ({
   alignSelf: 'center',
   transition: '200ms',
+  marginTop: 4,
   ':hover': {
     opacity: '50%',
     cursor: 'pointer',
